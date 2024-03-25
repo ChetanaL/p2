@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html lang="en" ng-app="shoppingApp"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Shopping List App</title> 
+    <script 
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script> 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+        }  
+         input { 
+            width: 10%; 
+            padding: 8px; 
+            margin-bottom: 10px; 
+            box-sizing: border-box; 
+        } 
+        h2 { 
+            color: #333; 
+        } 
+        ul { 
+            list-style-type: none; 
+            padding: 0; 
+        } 
+        li { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            margin-bottom: 5px; 
+            width: 300px; 
+        } 
+        button { 
+            background-color: #d9534f; 
+            color: white;  
+            border: none; 
+            padding: 5px 10px; 
+            cursor: pointer; 
+        } 
+        button:hover { 
+            background-color: #c9302c; 
+        }
+        input { 
+            padding: 8px; 
+            margin-right: 10px; 
+        } 
+        input[type="text"] { 
+            width: 200px; 
+        } 
+        input[type="text"], 
+        button { 
+            margin-bottom: 10px; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div ng-controller="ShoppingController"> 
+        <h2>Shopping List</h2> 
+        <ul> 
+            <li ng-repeat="item in shoppingItems"> 
+                {{ item }} 
+                <button ng-click="removeItem($index)">Remove</button> 
+            </li> 
+        </ul> 
+        <input type="text" ng-model="newItem" /> 
+        <button ng-click="addItem()">Add Item</button> 
+    </div> 
+    <script >angular.module('shoppingApp', []) 
+        .controller('ShoppingController', function ($scope) {
+        $scope.shoppingItems = ['Apple', 'Banana', 'Orange']; 
+        $scope.addItem = function () {if ($scope.newItem) {
+        $scope.shoppingItems.push($scope.newItem); 
+        $scope.newItem = '';  
+        } 
+        }; 
+        $scope.removeItem = function (index) { 
+        $scope.shoppingItems.splice(index, 1); 
+        }; 
+        });  
+    </script> 
+</body> 
+</html> 
+ 
+ 
